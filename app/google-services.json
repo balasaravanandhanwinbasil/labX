@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "371165767216",
+    "project_id": "labx-ios",
+    "storage_bucket": "labx-ios.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371165767216:android:5b3a21026bcb09c84caff5",
+        "android_client_info": {
+          "package_name": "com.sstinc.labx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKJlRdnHZqoDgd7qZTrbhx8-NT8CUH-sA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
