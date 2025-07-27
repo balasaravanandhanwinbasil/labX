@@ -1,4 +1,4 @@
-package com.sstinc.labx
+package com.example.orewaegoistda
 
 import android.content.Context
 import java.io.IOException

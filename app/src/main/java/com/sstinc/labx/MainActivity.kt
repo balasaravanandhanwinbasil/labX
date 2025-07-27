@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.*
@@ -25,6 +26,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import com.sstinc.labx.ui.theme.LabXTheme
 import java.util.*
 
@@ -191,12 +194,6 @@ fun MainScreen(
                     label = { Text("Calendar") },
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Science, contentDescription = null) },
-                    label = { Text("Lab Booking") },
-                    selected = selectedTab == 2,
-                    onClick = { selectedTab = 2 }
                 )
             }
         }
@@ -452,11 +449,23 @@ fun ProfileScreen(
                 )
                 Spacer(Modifier.height(12.dp))
 
-                DropdownMenuSelector(
-                    label = "Register Number",
-                    items = registerNumbers,
-                    selected = registerNumber,
-                    onItemSelected = { registerNumber = it }
+                OutlinedTextField(
+                    value = registerNumber,
+                    onValueChange = { registerNumber = it },
+                    label = { Text("Register Number") },
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    textStyle = TextStyle(Color.Black),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black,
+                        focusedLabelColor = Color.DarkGray,
+                        unfocusedLabelColor = Color.Gray,
+                        cursorColor = Color.Black,
+                        focusedBorderColor = Color.DarkGray,
+                        unfocusedBorderColor = Color.LightGray
+                    )
                 )
 
                 Spacer(Modifier.height(36.dp))

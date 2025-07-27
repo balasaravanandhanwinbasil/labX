@@ -44,6 +44,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.material.icons.filled.LocationOn
 import kotlinx.coroutines.tasks.await
 
 // --- UTILS ---
@@ -326,14 +327,6 @@ fun ConsultationsScreen(
                                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold, fontSize = 20.sp),
                                         color = MaterialTheme.colorScheme.onBackground
                                     )
-                                    Spacer(modifier = Modifier.height(5.dp))
-                                    if (!isStaff) {
-                                        Text(
-                                            "You",
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
                                 }
                                 Box(
                                     modifier = Modifier
@@ -361,6 +354,29 @@ fun ConsultationsScreen(
                                 } ?: "N/A",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.LocationOn,
+                                    contentDescription = "Location",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = consultation.location,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Divider(
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(vertical = 8.dp)
                             )
                             if (!expanded) {
                                 if (consultation.comment.isNotBlank()) {
@@ -401,12 +417,6 @@ fun ConsultationsScreen(
                                         modifier = Modifier.padding(bottom = 8.dp)
                                     )
                                 }
-
-                                Text(
-                                    "Location: ${consultation.location}",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
                             }
                             if (isStaff && isPending) {
                                 Spacer(modifier = Modifier.height(18.dp))
@@ -686,6 +696,7 @@ fun CreateConsultationSheet(
                 if (consultationId == null) "Create Consultation" else "Update Consultation",
                 style = MaterialTheme.typography.headlineSmall
             )
+
             Spacer(Modifier.height(12.dp))
 
             var searchQuery by remember { mutableStateOf("") }
@@ -905,7 +916,23 @@ fun ConsultationsCalendarScreen(
                                     Text("Note: ${consultation.comment}", style = MaterialTheme.typography.bodySmall)
                                 }
                                 if (consultation.location.isNotBlank()) {
-                                    Text("Location: ${consultation.location}", style = MaterialTheme.typography.bodySmall)
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.LocationOn,
+                                            contentDescription = "Location",
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                        Spacer(modifier = Modifier.width(4.dp))
+                                        Text(
+                                            text = consultation.location,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
+
                                 }
                             }
                         }

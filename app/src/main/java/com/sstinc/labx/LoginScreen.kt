@@ -2,6 +2,7 @@ package com.sstinc.labx
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Visibility
@@ -13,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
@@ -218,7 +220,16 @@ fun LoginScreen(onLoginSuccess: (accessToken: String?) -> Unit) {
 
             if (!isStaffSignup) {
                 ClassDropdown(options = classes, selected = selectedClass, onSelectedChange = { selectedClass = it })
-                ClassDropdown(options = registers, selected = selectedRegister, onSelectedChange = { selectedRegister = it })
+                OutlinedTextField(
+                    value = selectedRegister,
+                    onValueChange = { selectedRegister = it },
+                    label = { Text("Index No.") },
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    textStyle = TextStyle(Color.Black),
+                    colors = fieldColors
+                )
             }
 
             TextButton(onClick = { isStaffSignup = !isStaffSignup }) {
